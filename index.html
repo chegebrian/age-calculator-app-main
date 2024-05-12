@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./assets/images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Age calculator app</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <form action="">
+        <div class="form-alignment">
+          <div class="margin-right">
+            <label for="day" class="poppins-semibold">Day</label>
+            <input
+              type="number"
+              name="day"
+              id="day"
+              placeholder="DD"
+              pattern="[0-9]{2}"
+              class="input-size poppins-bold"
+            />
+          </div>
+          <div class="margin-right">
+            <label for="month" class="poppins-semibold">Month</label>
+            <input
+              type="number"
+              name="month"
+              id="month"
+              placeholder="MM"
+              pattern="[0-9]{2}"
+              class="input-size poppins-bold input-style"
+            />
+          </div>
+          <div>
+            <label for="year" class="poppins-semibold">Year</label>
+            <input
+              type="number"
+              name="year"
+              id="year"
+              placeholder="YYYY"
+              class="input-size poppins-bold"
+              pattern="[0-9]{4}"
+            />
+          </div>
+        </div>
+        <hr />
+        <div class="btn-div">
+          <button><img src="./assets/images/icon-arrow.svg" alt="" /></button>
+        </div>
+      </form>
+
+      <div>
+        <p class="poppins-extrabold">
+          <span class="purple">38</span> <span>years</span>
+        </p>
+        <p class="poppins-extrabold">
+          <span class="purple">3</span> <span>months</span>
+        </p>
+        <p class="poppins-extrabold">
+          <span class="purple">2</span> <span>days</span>
+        </p>
+      </div>
+
+      <div class="attribution">
+        Challenge by
+        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+          >Frontend Mentor</a
+        >. Coded by <a href="#">Your Name Here</a>.
+      </div>
+    </div>
+  </body>
+</html>
