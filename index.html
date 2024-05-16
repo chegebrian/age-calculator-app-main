@@ -25,46 +25,53 @@
         color: hsl(228, 45%, 44%);
       }
     </style>
+    <script defer src="script.js"></script>
   </head>
   <body>
     <div class="wrapper">
-      <form action="">
+      <form action="" novalidate>
         <div class="form-alignment">
           <div class="margin-right">
-            <label for="day" class="poppins-semibold">Day</label>
+            <label for="day" class="poppins-semibold day-label">Day</label>
             <input
               type="number"
               name="day"
               id="day"
               placeholder="DD"
-              pattern="[0-9]{2}"
-              class="input-size poppins-bold"
+              pattern="[0-9]{1,2}"
+              class="input-size poppins-bold input-margin"
+              required
             />
+            <span class="error day-err poppins-medium "></span>
           </div>
           <div class="margin-right">
-            <label for="month" class="poppins-semibold">Month</label>
+            <label for="month" class="poppins-semibold month-label">Month</label>
             <input
               type="number"
               name="month"
               id="month"
               placeholder="MM"
-              pattern="[0-9]{2}"
-              class="input-size poppins-bold input-style"
+              pattern="[0-9]{1,2}"
+              class="input-size poppins-bold input-style input-margin"
+              required
             />
+            <span class="error month-err poppins-medium "></span>
           </div>
           <div>
-            <label for="year" class="poppins-semibold">Year</label>
+            <label for="year" class="poppins-semibold year-label">Year</label>
             <input
               type="number"
               name="year"
               id="year"
               placeholder="YYYY"
-              class="input-size poppins-bold"
+              class="input-size poppins-bold input-margin"
               pattern="[0-9]{4}"
+              required
             />
+            <span class="error year-err poppins-medium "></span>
           </div>
         </div>
-       
+
         <div class="btn-div">
           <button><img src="./assets/images/icon-arrow.svg" alt="" /></button>
         </div>

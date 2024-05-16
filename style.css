@@ -83,13 +83,17 @@ body {
   font-size: var(--Font-size);
 }
 
+.input-margin {
+  margin: 0.5rem 0;
+}
+
 .form-alignment {
   display: flex;
 }
-.form-alignment div {
-  display: grid;
-  gap: 0.5rem;
-}
+/* .form-alignment div {
+  
+  
+} */
 
 .margin-right {
   margin-right: 0.75rem;
@@ -107,6 +111,8 @@ input {
   border: 1px solid var(--Light-grey);
   border-radius: 0.5rem;
 }
+
+
 
 .btn-div {
   text-align: center;
@@ -136,15 +142,33 @@ button {
   font-size: 2.5rem;
 }
 
+.border-error {
+  border: 1px solid var(--Light-red);
+}
+
+
+.error {
+  color: var(--Light-red);
+  font-size: 0.9rem;
+}
+
+.label-error {
+  color: var(--Light-red);
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* .fontSize {
+  font-size: 0.9rem;
+} */
+
 @media only screen and (min-width: 768px) {
   .wrapper {
     max-width: 768px;
   }
 
   .form-alignment div {
-    display: grid;
-    gap: 0.5rem;
-
     width: 190px;
   }
 
@@ -154,6 +178,10 @@ button {
 
   button {
     margin-left: 41.5rem;
+  }
+
+  .btn-div {
+    margin-top: 3rem;
   }
 
   .age {
