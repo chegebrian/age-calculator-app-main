@@ -15,14 +15,34 @@ const formEl = document.querySelector("form");
 const dayLabel = document.querySelector(".day-label");
 const monthLabel = document.querySelector(".month-label");
 const yearLabel = document.querySelector(".year-label");
-const currentYear = new Date().getFullYear();
+
+//output element
+const dayOutput = document.querySelector(".output-day");
+const monthOutput = document.querySelector(".output-month");
+const yearOutput = document.querySelector(".output-year");
+
+// button element
+const submitBtn = document.querySelector(".submit-btn");
+
+// get the current date
+let currentYear = new Date().getFullYear();
+
+// Return the day of a date as a number (1-31):
+let currentDay = new Date().getDate();
+
+// Return the month of a date as a number from 0 to 11.
+// To get the correct month number, you must add 1:
+let currentMonth = new Date().getMonth() + 1;
+console.log(currentMonth);
+console.log(currentDay);
+console.log(currentYear);
 
 // form submission
-formEl.addEventListener("submit", (e) => {
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
   const date = `${dayEl.value}/${monthEl.value}/${yearEl.value}`;
   console.log(date);
   valDate(date);
-
   showError();
   e.preventDefault();
 });
@@ -31,30 +51,36 @@ dayEl.addEventListener("input", (e) => {
   if (dayEl.validity.valid) {
     dayErr.textContent = "";
     dayLabel.className = "poppins-semibold";
-
     dayEl.style.border = "1px solid hsl(0,0%,86%)";
   } else {
     showError();
+    dayOutput.textContent = "";
+    monthOutput.textContent = "";
+    yearOutput.textContent = "";
   }
 });
 monthEl.addEventListener("input", (e) => {
   if (monthEl.validity.valid) {
     monthErr.textContent = "";
     monthLabel.className = "poppins-semibold";
-
     monthEl.style.border = "1px solid hsl(0,0%,86%)";
   } else {
     showError();
+    dayOutput.textContent = "";
+    monthOutput.textContent = "";
+    yearOutput.textContent = "";
   }
 });
 yearEl.addEventListener("input", (e) => {
   if (yearEl.validity.valid) {
     yearErr.textContent = "";
     yearLabel.className = "poppins-semibold";
-
     yearEl.style.border = "1px solid hsl(0,0%,86%)";
   } else {
     showError();
+    dayOutput.textContent = "";
+    monthOutput.textContent = "";
+    yearOutput.textContent = "";
   }
 });
 
@@ -97,16 +123,23 @@ function valDate(date) {
       yearErr.textContent = "must be in the past";
       yearLabel.className = "label-error";
       yearEl.style.border = "1px solid hsl(0,100%,67%)";
-    } else {
-      yearErr.textContent = "";
-      yearLabel.className = "poppins-semibold";
-      yearEl.style.border = "1px solid hsl(0,0%,86%)";
+
+      dayOutput.textContent = "";
+      monthOutput.textContent = "";
+      yearOutput.textContent = "";
+      return false;
     }
+
     if (month > ListofDays.length) {
       monthErr.textContent = "must be a valid month";
       monthLabel.className = "label-error";
       monthEl.style.border = "1px solid hsl(0,100%,67%)";
+
+      dayOutput.textContent = "";
+      monthOutput.textContent = "";
+      yearOutput.textContent = "";
       console.log("invalid month");
+      return false;
     }
     if (month == 1 || month > 2) {
       if (day > ListofDays[month - 1]) {
@@ -114,23 +147,64 @@ function valDate(date) {
         dayErr.textContent = "must be a valid day";
         dayLabel.className = "label-error";
         dayEl.style.border = "1px solid hsl(0,100%,67%)";
+
+        dayOutput.textContent = "";
+        monthOutput.textContent = "";
+        yearOutput.textContent = "";
         console.log("Invalid date");
-        // return false;
+        return false;
       }
     } else if (month == 2) {
       let leapYear = false;
       if ((!(year % 4) && year % 100) || !(year % 400)) leapYear = true;
       if (leapYear == false && day >= 29) {
+        dayErr.textContent = "must be a valid day";
+        dayLabel.className = "label-error";
+        dayEl.style.border = "1px solid hsl(0,100%,67%)";
+
+        dayOutput.textContent = "";
+        monthOutput.textContent = "";
+        yearOutput.textContent = "";
         console.log("Invalid date");
-        // return false;
+        return false;
       } else if (leapYear == true && day > 29) {
+        dayErr.textContent = "must be a valid day";
+        dayLabel.className = "label-error";
+        dayEl.style.border = "1px solid hsl(0,100%,67%)";
+
+        dayOutput.textContent = "";
+        monthOutput.textContent = "";
+        yearOutput.textContent = "";
         console.log("Invalid date format!");
-        // return false;
+        return false;
       }
     }
   } else {
+    dayErr.textContent = "must be a valid day";
+    dayLabel.className = "label-error";
+    dayEl.style.border = "1px solid hsl(0,100%,67%)";
+
+    dayOutput.textContent = "";
+    monthOutput.textContent = "";
+    yearOutput.textContent = "";
     console.log("Invalid date format!");
-    // return false;
+    return false;
   }
-  return "Valid date";
+
+  if (dayEl.value > currentDay) {
+    currentDay = dayEl.value;
+    dayEl.value = currentDay;
+  }
+  if (monthEl.value > currentMonth) {
+    currentMonth = currentMonth + 12;
+    currentYear = currentYear - 1;
+  }
+
+  let days = currentDay - dayEl.value;
+  let months = currentMonth - monthEl.value;
+  let years = currentYear - yearEl.value;
+
+  dayOutput.textContent = days;
+  monthOutput.textContent = months;
+  yearOutput.textContent = years;
 }
